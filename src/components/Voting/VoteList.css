@@ -1,0 +1,31 @@
+.voting-page-line{
+    background-color: #340052;
+    color: White;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+.exit-btn-2{
+    background-color: #a60202;
+    color: White;
+    padding: 10px 40px;
+    margin: 0 0 20px 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.exit-btn-2:hover {
+    background-color: #c79918;
+    transform: scale(1.05);
+  }
+  .back-btn{
+    background-color: #02a66a;
+    color: White;
+    padding: 10px 40px;
+    margin: 0 0 20px 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+  }
+  .back-btn:hover{
+    background-color: #65008a;
+    transform: scale(1.05);
+  }

@@ -1,0 +1,38 @@
+.cast-vote-btn {
+  /* background-color: #340052; */
+  background-color: rgb(0, 62, 150);
+  border-radius: 20px; /* Optional: Adds rounded corners to the container */
+  color: white;
+  padding: 10px;
+  font-size: 2rem; /* Default size for medium screens */
+  text-align: center;
+  /* display: flex;
+    justify-content: space-between; */
+  margin-bottom: 20px;
+  align-items: center;
+  cursor: hand;
+}
+
+.cast-vote-btn:hover {
+  transform: scale(1.1); /* Slightly enlarge the image */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 1); /* Add a shadow */
+  cursor: pointer; /* Ensure pointer cursor on hover */
+}
+
+.exit-btn {
+  background-color: #9e0000; /* Vibrant blue background color */
+  border-radius: 20px; /* Optional: Adds rounded corners to the container */
+  color: white;
+  padding: 0px 50px;
+  font-size: 2rem; /* Default size for medium screens */
+  text-align: center;
+  /* display: flex;
+      justify-content: space-between; */
+  margin-bottom: 20px;
+  align-items: center;
+  cursor: hand;
+}
+.exit-btn:hover {
+  transform: scale(1.1); /* Slightly enlarge the image */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 1); /* Add a shadow */
+}

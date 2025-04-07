@@ -1,0 +1,35 @@
+/* Overlay to block interaction with the page */
+.overlay {
+    position: fixed; /* Fix to viewport, not scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    z-index: 10000; /* Ensure it's on top of all other elements */
+    display: flex; /* Center the message */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Style for the congratulations message box */
+  .congratulations-message {
+    text-align: center;
+    color: #fff;
+    background: #28a745; /* Green background */
+    padding: 30px 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+  }
+  
+  .congratulations-message h2 {
+    margin-bottom: 10px;
+    font-size: 2em;
+  }
+  
+  .congratulations-message p {
+    margin: 0;
+    font-size: 1.1em;
+  }
+  

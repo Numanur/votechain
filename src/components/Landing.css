@@ -1,0 +1,59 @@
+Subheading span elements .subheading span {
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* .subheading span:hover {
+  transform: scale(1.1);
+  color: white;
+} */
+
+.fingerprint-line {
+  background-color: #340052; /* Vibrant blue background color */
+  border-radius: 0px 20px 20px 0px; /* Optional: Adds rounded corners to the container */
+  color: white;
+  padding: 10px;
+  font-size: 2rem; /* Default size for medium screens */
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fingerprint-icon {
+  font-size: 2.5rem; /* Increase icon size */
+  margin-left: 1rem; /* Add spacing between text and icon */
+  color: inherit; /* Optional: matches text color */
+}
+.fingerprint-img:hover {
+  transform: scale(1.1); /* Slightly enlarge the image */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 1); /* Add a shadow */
+  cursor: pointer; /* Ensure pointer cursor on hover */
+}
+.fingerprint-img.clicked {
+  animation: scale-up-bg 0.3s ease forwards; /* Trigger animation on click */
+}
+
+@keyframes scale-up-bg {
+  0% {
+    transform: scale(1); /* Normal size */
+    background-color: transparent; /* Default background */
+  }
+  50% {
+    transform: scale(1.2); /* Scaled-up size */
+    background-color: #e0f7fa; /* Light blue background at peak */
+  }
+  100% {
+    transform: scale(1); /* Back to normal size */
+    background-color: #e0f7fa; /* Retain background color */
+  }
+}
+@media (max-width: 768px) {
+  .fingerprint-line {
+    font-size: 1.5rem; /* Smaller text for tablets */
+  }
+  .fingerprint-img {
+    height: 100px;
+    width: 100px;
+  }
+}
