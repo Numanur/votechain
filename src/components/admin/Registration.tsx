@@ -75,74 +75,149 @@ const Registration = () => {
   };
 
   return (
-    <div className="container-fluid text-center py-4 bg-dark text-white mt-0">
-      <h2 className="text-xl font-bold mb-4 text-primary">Voter Registration</h2>
-      <div className="">
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="text"
-            name="fname"
-            placeholder="Father's Name"
-            value={formData.fname}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="text"
-            name="mname"
-            placeholder="Mother's Name"
-            value={formData.mname}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <textarea
-            name="address"
-            placeholder="Address"
-            value={formData.address}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <input
-            type="text"
-            name="nid"
-            placeholder="NID Number"
-            value={formData.nid}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
-          />
-          <button
-            type="submit"
-            className=""
-          >
-            Submit & Scan Fingerprint
-          </button>
-        </form>
-      </div>
+    <div
+      className="container-fluid text-center p-2 mt-0 text-white"
+      style={{ backgroundColor: "#340052" }}
+    >
+      <h2
+        className="mb-4 p-2 bg-dark"
+        style={{ color: "white", fontSize: "2.5rem", borderRadius: "10px" }}
+      >
+        Voter Registration
+      </h2>
 
-      {status && (
-        <p className="mt-4 text-center font-medium text-gray-700">{status}</p>
-      )}
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="w-100" style={{ maxWidth: "700px" }}>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3 row align-items-center">
+              <label
+                htmlFor="name"
+                className="col-sm-4 col-form-label text-start"
+              >
+                Full Name
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="mb-3 row align-items-center">
+              <label
+                htmlFor="fname"
+                className="col-sm-4 col-form-label text-start"
+              >
+                Father's Name
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  value={formData.fname}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="mb-3 row align-items-center">
+              <label
+                htmlFor="mname"
+                className="col-sm-4 col-form-label text-start"
+              >
+                Mother's Name
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  id="mname"
+                  name="mname"
+                  value={formData.mname}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="mb-3 row align-items-center">
+              <label
+                htmlFor="dob"
+                className="col-sm-4 col-form-label text-start"
+              >
+                Date of Birth
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="mb-3 row align-items-center">
+              <label
+                htmlFor="address"
+                className="col-sm-4 col-form-label text-start"
+              >
+                Address
+              </label>
+              <div className="col-sm-8">
+                <textarea
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="mb-4 row align-items-center">
+              <label
+                htmlFor="nid"
+                className="col-sm-4 col-form-label text-start"
+              >
+                NID Number
+              </label>
+              <div className="col-sm-8">
+                <input
+                  type="text"
+                  id="nid"
+                  name="nid"
+                  value={formData.nid}
+                  onChange={handleChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="btn btn-primary w-100">
+              Submit & Scan Fingerprint
+            </button>
+          </form>
+
+          {status && (
+            <p className="mt-4 text-center text-light fw-medium">{status}</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
