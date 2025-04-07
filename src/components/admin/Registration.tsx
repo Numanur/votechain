@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import io from "socket.io-client";
-import axios from "axios";
-
-// Connect to backend Socket.IO server
-const socket = io("http://localhost:3000"); // Update if using different host
+import React, { useState, useEffect, useRef } from "react";
+import { io, Socket } from "socket.io-client";
 
 interface FormData {
   name: string;
@@ -23,54 +19,45 @@ const Registration = () => {
     address: "",
     nid: "",
   });
+  const [status, setStatus] = useState("");
+  const socketRef = useRef<Socket>();
 
-  const [status, setStatus] = useState<string>("");
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  useEffect(() => {
+    socketRef.current = io("http://localhost:3000");
+
+    socketRef.current.on("status", (msg) => {
+      setStatus(msg);
+    });
+
+    socketRef.current.on("enrollmentSuccess", (fingerprintId) => {
+      setStatus(`Success! Fingerprint ID: ${fingerprintId}`);
+    });
+
+    socketRef.current.on("error", (err) => {
+      setStatus(`Error: ${err}`);
+    });
+
+    return () => {
+      socketRef.current?.disconnect();
+    };
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Starting enrollment...");
+
+    if (socketRef.current) {
+      socketRef.current.emit("formData", formData);
+      socketRef.current.emit("startEnrollment");
+    } else {
+      setStatus("Connection error");
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Waiting for fingerprint scan...");
-    try {
-      const temp = await axios.post(
-        "http://localhost:3000/temp-store",
-        formData
-      );
-      console.log(temp.data);
-      if (!temp.data.success) throw new Error("Failed to hold form Data");
-    } catch (error) {
-      console.error("Error storing form data:", error);
-      setStatus("cannot send to backend...");
-      return;
-    }
-    socket.emit("StartFingerprintEnrollment");
-    socket.once("fingerorintEnrolled", async (fingerprintId: number) => {
-      console.log("Fingerprint enrolled with ID:", fingerprintId);
-      setStatus("Fingerprint enrolled successfully!");
-      try {
-        const finalRes = await axios.post("http://localhost:3000/register", {
-          ...formData,
-          fingerprintId: fingerprintId,
-        });
-        if (finalRes.data.success) {
-          setStatus("Registration successful.");
-        } else {
-          setStatus("Registration failed.");
-        }
-      } catch (error) {
-        console.error("Error storing fingerprint ID:", error);
-        setStatus("cannot send to backend...");
-      }
-    });
-
-    socket.once("fingerprintEnrollmentFailed", () => {
-      setStatus("Fingerprint enrollment failed. Please try again.");
     });
   };
 
@@ -177,7 +164,7 @@ const Registration = () => {
                 Address
               </label>
               <div className="col-sm-8">
-                <textarea
+                <input
                   id="address"
                   name="address"
                   value={formData.address}
